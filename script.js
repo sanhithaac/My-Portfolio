@@ -23,7 +23,7 @@ document.querySelectorAll('[data-scroll-to]').forEach(link => {
 });
 
 // =======================
-// HERO SECTION ANIMATIONS
+// HERO SECTION
 // =======================
 gsap.from(".hero-text h1", {
     scrollTrigger: { trigger: "#home", start: "top center" },
@@ -61,14 +61,13 @@ gsap.from(".photo-circle", {
 });
 
 // =======================
-// ABOUT SECTION
+// ABOUT
 // =======================
 gsap.from(".about-col-1", {
     scrollTrigger: { trigger: "#about", start: "top 80%" },
     opacity: 0,
     x: -40,
-    duration: 0.8,
-    ease: "power2.out"
+    duration: 0.8
 });
 
 gsap.from(".about-col-2", {
@@ -76,8 +75,7 @@ gsap.from(".about-col-2", {
     opacity: 0,
     y: 30,
     duration: 0.8,
-    delay: 0.2,
-    ease: "power2.out"
+    delay: 0.2
 });
 
 gsap.from(".about-col-3", {
@@ -85,8 +83,7 @@ gsap.from(".about-col-3", {
     opacity: 0,
     y: 30,
     duration: 0.8,
-    delay: 0.4,
-    ease: "power2.out"
+    delay: 0.4
 });
 
 // =======================
@@ -97,171 +94,103 @@ gsap.utils.toArray('.section-title').forEach(title => {
         scrollTrigger: { trigger: title, start: "top 80%" },
         opacity: 0,
         y: 25,
-        duration: 0.7,
-        ease: "power2.out"
+        duration: 0.7
     });
 });
 
 // =======================
-// EDUCATION TIMELINE
+// PROJECT CARDS (ONLY ORIGINAL ONES)
 // =======================
-gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-    gsap.from(item, {
-        scrollTrigger: { trigger: item, start: "top 85%" },
-        opacity: 0,
-        x: -25,
-        duration: 0.6,
-        delay: i * 0.1,
-        ease: "power2.out"
-    });
-});
+const slider = document.getElementById("slider");
+const originalCards = Array.from(slider.children);
 
-// =======================
-// CERTIFICATIONS
-// =======================
-gsap.utils.toArray('.cert-card').forEach((card, i) => {
+originalCards.forEach((card, i) => {
     gsap.from(card, {
-        scrollTrigger: { trigger: card, start: "top 85%" },
-        opacity: 0,
-        y: 25,
-        duration: 0.6,
-        delay: i * 0.1,
-        ease: "power2.out"
-    });
-});
-
-// =======================
-// TECH STACK
-// =======================
-gsap.utils.toArray('.tech-icon-item').forEach((item, i) => {
-    gsap.from(item, {
-        scrollTrigger: { trigger: item, start: "top 85%" },
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        delay: i * 0.05,
-        ease: "power2.out"
-    });
-});
-
-// =======================
-// PROJECT CARDS
-// =======================
-gsap.utils.toArray('.project-card').forEach((card, i) => {
-    gsap.from(card, {
-        scrollTrigger: { trigger: card, start: "top 85%" },
+        scrollTrigger: {
+            trigger: "#projects",
+            start: "top 75%"
+        },
         opacity: 0,
         y: 40,
         duration: 0.6,
-        delay: i * 0.1,
-        ease: "power2.out"
+        delay: i * 0.1
     });
 });
 
 // =======================
-// PROJECTS INFINITE SLIDER
-// =======================
-// =======================
 // PROJECTS INFINITE SLIDER (FIXED)
 // =======================
-const slider = document.getElementById("slider");
-let autoScroll;
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 
-// clone cards ONCE
-const cards = [...slider.children];
-cards.forEach(card => slider.appendChild(card.cloneNode(true)));
+let autoScrollInterval;
+
+const CARD_WIDTH = 392;
+const AUTO_SCROLL_SPEED = 1;
+
+// clone AFTER animations
+originalCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add("clone");
+    slider.appendChild(clone);
+});
 
 const resetPoint = slider.scrollWidth / 2;
 
 function startAutoScroll() {
-    autoScroll = setInterval(() => {
-        slider.scrollLeft += 1.2;
+    autoScrollInterval = setInterval(() => {
+        slider.scrollLeft += AUTO_SCROLL_SPEED;
 
-        // reset BEFORE hitting edge
-        if (slider.scrollLeft >= resetPoint - 5) {
-            slider.scrollLeft = 1;
+        if (slider.scrollLeft >= resetPoint) {
+            slider.scrollLeft = 0;
         }
     }, 16);
 }
 
 function stopAutoScroll() {
-    clearInterval(autoScroll);
+    clearInterval(autoScrollInterval);
 }
 
 startAutoScroll();
 
-// pause on hover
 slider.addEventListener("mouseenter", stopAutoScroll);
 slider.addEventListener("mouseleave", startAutoScroll);
 
-// arrows (safe bounds)
-document.getElementById("nextBtn").onclick = () => {
-    gsap.to(slider, {
-        scrollLeft: slider.scrollLeft + 350,
-        duration: 0.5,
-        ease: "power2.out"
-    });
+nextBtn.onclick = () => {
+    stopAutoScroll();
+    slider.scrollBy({ left: CARD_WIDTH, behavior: "smooth" });
+
+    if (slider.scrollLeft + slider.clientWidth >= resetPoint) {
+        setTimeout(() => slider.scrollLeft = 0, 300);
+    }
+
+    startAutoScroll();
 };
 
-document.getElementById("prevBtn").onclick = () => {
-    gsap.to(slider, {
-        scrollLeft: Math.max(slider.scrollLeft - 350, 0),
-        duration: 0.5,
-        ease: "power2.out"
-    });
+prevBtn.onclick = () => {
+    stopAutoScroll();
+
+    if (slider.scrollLeft <= 0) {
+        slider.scrollLeft = resetPoint;
+    }
+
+    slider.scrollBy({ left: -CARD_WIDTH, behavior: "smooth" });
+    startAutoScroll();
 };
 
 // =======================
-// CONTACT SECTION
+// CONTACT
 // =======================
 gsap.from(".contact-left", {
     scrollTrigger: { trigger: "#contact", start: "top 70%" },
     opacity: 0,
     x: -40,
-    duration: 0.8,
-    ease: "power2.out"
+    duration: 0.8
 });
 
 gsap.from(".contact-form-wrapper", {
     scrollTrigger: { trigger: "#contact", start: "top 70%" },
     opacity: 0,
     x: 40,
-    duration: 0.8,
-    ease: "power2.out"
+    duration: 0.8
 });
-
-// =======================
-// TITLE UNDERLINES
-// =======================
-gsap.utils.toArray('.title-underline').forEach(line => {
-    gsap.from(line, {
-        scrollTrigger: { trigger: line, start: "top 80%" },
-        width: 0,
-        duration: 0.8,
-        ease: "power2.out"
-    });
-});
-
-// =======================
-// CONTACT FORM SUBMISSION
-// =======================
-const form = document.getElementById('contactForm');
-
-if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-
-        const mailto = `mailto:sanhithaac@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-            `Name: ${name}\nEmail: ${email}\n\n${message}`
-        )}`;
-
-        window.location.href = mailto;
-        alert("Opening your email client...");
-        this.reset();
-    });
-}
