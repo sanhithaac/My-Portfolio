@@ -176,7 +176,7 @@ section {
 }
 
 
-#home {
+/* #home {
     background: var(--bg);
 }
 
@@ -202,6 +202,39 @@ section {
 
 #contact {
     background: var(--bg-darker-6);
+} */
+/* UPDATED SECTION BACKGROUND ORDER */
+
+#home {
+    background: var(--bg);
+}
+
+#about {
+    background: var(--bg-darker-1);
+}
+
+#research {
+    background: var(--bg-darker-2);
+}
+
+#projects {
+    background: var(--bg-darker-3);
+}
+
+#education {
+    background: var(--bg-darker-4);
+}
+
+#tech-stack {
+    background: var(--bg-darker-5);
+}
+
+#certifications {
+    background: var(--bg-darker-6);
+}
+
+#contact {
+    background: #ffdfc8; /* final slightly darker shade */
 }
 
 .section-title {
