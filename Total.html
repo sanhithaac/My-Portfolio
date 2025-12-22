@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AC Sanhitha Reddy — ML/AI Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------- Root Colors ---------- */
+        
+         :root {
+            --bg: #FFF6F1;
+            --text: #2B2B2B;
+            --accent: #C75448;
+            --muted: #6F6F6F;
+            --border: rgba(0, 0, 0, 0.16);
+        }
+        /* ---------- Reset ---------- */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: var(--bg);
+            font-family: "Inter", sans-serif;
+            font-size: 18px;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        /* ---------- NAVIGATION ---------- */
+        
+        .topnav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 48px;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-image img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+        
+        nav a {
+            color: #C75448;
+            text-decoration: none;
+            margin-left: 38px;
+            font-size: 16px;
+            position: relative;
+            transition: color .2s ease;
+            cursor: pointer;
+        }
+        
+        nav a:not(.resume-btn)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: #C75448;
+            transition: width .3s ease;
+        }
+        
+        nav a:not(.resume-btn):hover::after {
+            width: 100%;
+        }
+        
+        .resume-btn {
+            padding: 10px 26px;
+            background: linear-gradient(135deg, #F2DDC9, #D8C19E);
+            border-radius: 40px;
+            color: #111 !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: transform .2s ease;
+        }
+        
+        .resume-btn:hover {
+            transform: translateY(-1px);
+        }
+        /* ---------- SECTIONS ---------- */
+        
+        section {
+            min-height: 100vh;
+            padding: 120px 48px 80px;
+            position: relative;
+        }
+        /* ---------- HOME SECTION ---------- */
+        
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 90px;
+            padding: 160px 80px 100px;
+        }
+        
+        .hero-text h1 {
+            font-size: 64px;
+            font-family: "Playfair Display", serif;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+        
+        .hero-text .accent {
+            color: #C75448;
+        }
+        
+        .hero-desc {
+            max-width: 620px;
+            margin-top: 28px;
+            font-size: 22px;
+            line-height: 1.45;
+            color: #000;
+        }
+        
+        .hero-actions {
+            margin-top: 35px;
+            display: flex;
+            gap: 18px;
+        }
+        
+        .btn-primary {
+            padding: 12px 24px;
+            background: #C75448;
+            color: #fff;
+            border-radius: 28px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            padding: 12px 24px;
+            border: 2px solid #C75448;
+            color: #C75448;
+            border-radius: 28px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .btn-outline:hover {
+            background: #C75448;
+            color: white;
+        }
+        
+        .hero-photo {
+            min-width: 360px;
+        }
+        
+        .photo-circle {
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+            background: #ddd;
+        }
+        
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ---------- ABOUT SECTION ---------- */
+        
+        #about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+        }
+        
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 60px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+        
+        .section-text {
+            font-size: 20px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        /* ---------- PROJECTS SECTION ---------- */
+        
+        #projects {
+            padding-top: 140px;
+        }
+        
+        .projects-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .projects-title {
+            font-family: "Playfair Display", serif;
+            font-size: 60px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .projects-sub {
+            font-size: 20px;
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 28px;
+            padding: 0 48px;
+        }
+        
+        .arrow {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: white;
+            font-size: 22px;
+            cursor: pointer;
+            line-height: 34px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .arrow:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .projects-slider {
+            display: flex;
+            gap: 32px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 48px 40px;
+            scroll-behavior: smooth;
+        }
+        
+        .projects-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .project-card {
+            min-width: 360px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .35s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            border-radius: 28px;
+            background: radial-gradient(circle at 50% 50%, rgba(199, 84, 72, 0.14), transparent 75%);
+            opacity: 0;
+            transition: opacity .4s ease;
+            z-index: -1;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .img-1 {
+            background: #fdebe7;
+        }
+        
+        .img-2 {
+            background: #f8e6ff;
+        }
+        
+        .img-3 {
+            background: #e7f6ff;
+        }
+        
+        .img-4 {
+            background: #fff0e7;
+        }
+        
+        .img-5 {
+            background: #e7fff4;
+        }
+        
+        .img-6 {
+            background: #f9e6e6;
+        }
+        
+        .card-body {
+            padding: 18px;
+        }
+        
+        .card-body h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        
+        .card-body p {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .tags span {
+            font-size: 12px;
+            padding: 4px 8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+        }
+        /* ---------- CONTACT SECTION ---------- */
+        
+        #contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .contact-content {
+            max-width: 700px;
+        }
+        
+        .contact-links {
+            margin-top: 32px;
+            font-size: 20px;
+        }
+        
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .contact-links a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+        /* ---------- RESPONSIVE ---------- */
+        
+        @media(max-width: 1000px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 120px 40px 80px;
+            }
+            .hero-text h1 {
+                font-size: 48px;
+            }
+            .photo-circle {
+                width: 260px;
+                height: 260px;
+            }
+            .hero-desc {
+                margin: 20px auto;
+                font-size: 19px;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .section-title {
+                font-size: 44px;
+            }
+            nav a {
+                margin-left: 20px;
+                font-size: 14px;
+            }
+            .topnav {
+                padding: 0 24px;
+            }
+        }
+        
+        @media(max-width: 600px) {
+            section {
+                padding: 100px 24px 60px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .section-title {
+                font-size: 36px;
+            }
+            .projects-slider {
+                padding: 0 24px 40px;
+            }
+            .slider-nav {
+                padding: 0 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="topnav">
+        <div class="logo-image">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #F2DDC9, #D8C19E); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 24px; color: #C75448; font-weight: 600;">SR</div>
+        </div>
+
+        <nav>
+            <a data-scroll-to="home">Home</a>
+            <a data-scroll-to="about">About</a>
+            <a data-scroll-to="projects">Projects</a>
+            <a data-scroll-to="contact">Contact</a>
+            <a href="#resume" class="resume-btn">Resume</a>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="hero-text">
+            <h1>
+                Hi there! I'm <span class="accent">Sanhitha</span> — <br> ML/AI engineer & researcher.
+            </h1>
+
+            <p class="hero-desc">
+                To grow as a versatile software developer by creating clean, functional, and optimized applications. I aim to contribute to innovative solutions in software, web, and intelligent systems, while constantly improving my problem-solving and engineering skills.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn-primary" data-scroll-to="contact">Contact Me</a>
+                <a class="btn-outline" data-scroll-to="projects">My Projects</a>
+            </div>
+        </div>
+
+        <div class="hero-photo">
+            <div class="photo-circle">
+                <!-- Add your image src here -->
+
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #C75448, #F2DDC9);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-content">
+            <h1 class="section-title">About Me</h1>
+            <p class="section-text">
+                I'm a passionate ML/AI engineer with expertise in machine learning, deep learning, and computer vision. My work spans from biomedical NLP to quantitative finance, always seeking innovative solutions to complex problems. I'm driven by curiosity and the
+                desire to build systems that make a meaningful impact.
+            </p>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="projects-header">
+            <h1 class="projects-title">Projects</h1>
+            <p class="projects-sub">
+                Research work across Machine Learning, AI systems, Biomedical NLP, Computer Vision & Quant finance.
+            </p>
+        </div>
+
+        <div class="slider-nav">
+            <button id="prevBtn" class="arrow">‹</button>
+            <button id="nextBtn" class="arrow">›</button>
+        </div>
+
+        <div class="projects-slider" id="slider">
+            <div class="project-card">
+                <div class="card-img img-1"></div>
+                <div class="card-body">
+                    <h2>3D Molecular Similarity Engine</h2>
+                    <p>Mathematically rigorous 3D molecular similarity & property prediction.</p>
+                    <div class="tags">
+                        <span>Geometric ML</span><span>Kernel Methods</span><span>Computational Chemistry</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img img-2"></div>
+                <div class="card-body">
+                    <h2>HASYv2 Handwritten Math Symbols</h2>
+                    <p>PyTorch CNN classifier on HASYv2 dataset, winner of university-level competition.</p>
+                    <div class="tags">
+                        <span>CNN</span><span>PyTorch</span><span>Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img img-3"></div>
+                <div class="card-body">
+                    <h2>Market Reversal Detection</h2>
+                    <p>Time-series LSTM model for reversal point detection in equity markets.</p>
+                    <div class="tags">
+                        <span>LSTM</span><span>Finance ML</span><span>Time-Series</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img img-4"></div>
+                <div class="card-body">
+                    <h2>Brain Tumor Detection</h2>
+                    <p>Transfer learning for tumor recognition using MRI datasets.</p>
+                    <div class="tags">
+                        <span>Medical Imaging</span><span>Transfer Learning</span><span>CNN</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img img-5"></div>
+                <div class="card-body">
+                    <h2>Biomedical Knowledge System</h2>
+                    <p>NER + RAG pipeline for biomedical insights using transformer models.</p>
+                    <div class="tags">
+                        <span>NER</span><span>RAG</span><span>NLP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img img-6"></div>
+                <div class="card-body">
+                    <h2>MindHaven</h2>
+                    <p>Privacy-first mental-health platform using LLMs & agentic workflows.</p>
+                    <div class="tags">
+                        <span>LLMs</span><span>RAG</span><span>Full-Stack</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="contact-content">
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-text">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            </p>
+
+            <div class="contact-links">
+                <p>
+                    Email: <a href="mailto:example@gmail.com">example@gmail.com</a><br> WhatsApp: <a href="https://wa.me/91XXXXXXXXXX" target="_blank">+91 XXXXX XXXXX</a>
+                </p>
+                <p style="margin-top: 20px;">
+                    <a href="#" target="_blank">LinkedIn</a> •
+                    <a href="#" target="_blank">GitHub</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('[data-scroll-to]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('data-scroll-to');
+                gsap.to(window, {
+                    duration: 1.2,
+                    scrollTo: {
+                        y: `#${target}`,
+                        offsetY: 80
+                    },
+                    ease: "power3.inOut"
+                });
+            });
+        });
+
+        // Hero section animation
+        gsap.from(".hero-text h1", {
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top center"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from(".hero-desc", {
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top center"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from(".photo-circle", {
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top center"
+            },
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            delay: 0.5,
+            ease: "power3.out"
+        });
+
+        // Section title animations
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 80%"
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+
+        // Project cards animation
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        // Projects slider controls
+        const slider = document.getElementById('slider');
+        let autoScroll;
+
+        function startAutoScroll() {
+            autoScroll = setInterval(() => {
+                slider.scrollLeft += 1.6;
+                if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+                    slider.scrollLeft = 0;
+                }
+            }, 12);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScroll);
+        }
+
+        startAutoScroll();
+
+        slider.addEventListener('mouseenter', stopAutoScroll);
+        slider.addEventListener('mouseleave', startAutoScroll);
+
+        document.getElementById('nextBtn').onclick = () => {
+            gsap.to(slider, {
+                scrollLeft: slider.scrollLeft + 400,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        };
+
+        document.getElementById('prevBtn').onclick = () => {
+            gsap.to(slider, {
+                scrollLeft: slider.scrollLeft - 400,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        };
+
+        // Navbar hide/show on scroll
+        let lastScroll = 0;
+        const navbar = document.querySelector('.topnav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 80) {
+                navbar.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+
+</body>
+
+</html>
